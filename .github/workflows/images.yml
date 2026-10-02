@@ -75,8 +75,6 @@ jobs:
           platforms: linux/${{ matrix.arch }}
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/${{ matrix.image }}:stage-${{ github.run_id }}-${{ matrix.arch }}
-          cache-from: type=gha,scope=${{ matrix.image }}-${{ matrix.arch }}
-          cache-to: type=gha,scope=${{ matrix.image }}-${{ matrix.arch }},mode=max
 
   publish:
     name: publish multi-arch manifests

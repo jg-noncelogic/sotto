@@ -40,7 +40,6 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: ${{ matrix.target }}
-      - uses: Swatinem/rust-cache@v2
 
       # A tag can point anywhere; never ship untested code. (DB-gated tests skip without Postgres.)
       - name: Test before shipping

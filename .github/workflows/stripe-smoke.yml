@@ -52,7 +52,6 @@ jobs:
         with:
           targets: wasm32-unknown-unknown
 
-      - uses: Swatinem/rust-cache@v2
 
       # The web build invokes wasm-pack directly, so install the same pinned tool used by the
       # required web CI job instead of relying on runner-global tooling. Pinning matters because
@@ -65,8 +64,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-          cache-dependency-path: web/package-lock.json
 
       - name: Install Stripe CLI
         env:

@@ -17,7 +17,6 @@ jobs:
         with:
           components: clippy, rustfmt
           targets: wasm32-unknown-unknown
-      - uses: Swatinem/rust-cache@v2
       - name: Format
         run: cargo fmt --all --check
       - name: Clippy
@@ -117,7 +116,6 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: wasm32-unknown-unknown
-      - uses: Swatinem/rust-cache@v2
       - name: Install wasm-pack
         # Pinned: the action's "latest" resolution isn't reliably semver-aware - it picked
         # v0.9.1 over the real latest (v0.15.0) on a run during this same session, which reads
@@ -140,7 +138,6 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: wasm32-unknown-unknown
-      - uses: Swatinem/rust-cache@v2
       - name: Install wasm-pack
         # Pinned: the action's "latest" resolution isn't reliably semver-aware - it picked
         # v0.9.1 over the real latest (v0.15.0) on a run during this same session, which reads
@@ -151,8 +148,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-          cache-dependency-path: web/package-lock.json
       - name: Install web deps
         run: npm ci
       - name: Dependency audit (shipped deps)
@@ -188,7 +183,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
-      - uses: Swatinem/rust-cache@v2
       - name: Server + end-to-end tests (with Postgres)
         run: cargo test -p sotto-server -p sotto-cli
       - name: Restore checker meets a real database
@@ -249,7 +243,6 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
         with:
           targets: wasm32-unknown-unknown
-      - uses: Swatinem/rust-cache@v2
       - name: Install wasm-pack
         # Pinned: the action's "latest" resolution isn't reliably semver-aware - it picked
         # v0.9.1 over the real latest (v0.15.0) on a run during this same session, which reads
@@ -260,8 +253,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
-          cache-dependency-path: web/package-lock.json
 
       - name: Build the mock-OAuth server and the seed fixture
         run: |
@@ -323,7 +314,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - uses: Swatinem/rust-cache@v2
       - name: Install cargo-audit
         # Keep the JSON report parser/tests in sync when upgrading this version.
         run: cargo install cargo-audit --version 0.22.2 --locked
